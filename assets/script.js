@@ -1,20 +1,31 @@
-const startButton = document.getElementById('start-btn');
-const nextButton = document.getElementById('next-btn');
-const questionContainerElement = document.getElementById('question-container');
-const questionElement = document.getElementById('question');
-const answerButtonsElement = document.getElementById('answer-buttons');
 const timerElement = document.getElementById('timer');
-const scoreElement = document.getElementById('score');
-const highScoreElement = document.getElementById('high-score');
-const highScoreButton = document.getElementById('high-score-btn');
-const highScoreContainerElement = document.getElementById('high-score-container');
-
-
-
+const startQuizButton = document.getElementById('start-quiz');
+const timeLeft = document.getElementById('time-left');
 
 
 //ToDo: set up variables for the quiz
 //ToDo: set up timer for the quiz
+startQuizButton.addEventListener('click', startQuiz);
+
+function startQuiz(){
+let timeLeft = 60;
+
+function updateTimer() {
+    const minutes = Math.floor(timeLeft / 60);
+    const seconds = timeLeft % 60;
+
+    timerElement.timeLeft = `${seconds}`;
+
+    timeLeft--;
+
+    if (timeLeft < 0) {
+        clearInterval(timerInterval);
+        alert('Time is up!');
+    }
+}
+
+const timerInterval = setInterval(updateTimer, 1000);
+}
 //ToDo: set up function to start the quiz
 //ToDo: set up function to end the quiz
 //ToDo: set up function to save the score
