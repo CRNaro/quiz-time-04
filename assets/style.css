@@ -1,0 +1,44 @@
+
+/* Setting border for pageContainer*/
+
+.timer {
+    margin-left: 90%;
+}
+
+.quiz-header, h1 {
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.quiz-body {
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+p {
+    text-align: center;
+}
+
+
+
+
+section {
+    border: 5px solid black;
+    padding: 5%;
+    margin: 10px;
+    width: 80%;
+    margin: auto;
+    
+};
+
+.timer {
+    margin-left: 400px;
+}
+
+header {
+    align-items: center;
+}

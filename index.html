@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
+        <meta charset='UTF-8'>
         <title>My Quiz</title>
-        <link rel="stylesheet" href="style.css">
+        <link rel='stylesheet' href='./assets/style.css' type='text/css'>
     </head>
     <body>
-        <div class="conatianerPage">
+        <section class='pageContainer'>
             <header>
                 <div>
-                    <a href="./highscore.html">
+                    <a href='./highscores.html'>
                         <button class="btn" 
-                        id="see-highest-score">High Scores</button>
+                        id='see-highest-score'>High Scores</button>
                     </a>
                 </div>
 
-                <div class="timer">
+                <div class='timer'>
                     <p>Time Left: 
-                        <span id="time">
+                        <span id='time'>
                             0</span>
                     </p>
                 </div>
             </header>
 
-            <main class="quiz">
-                <di class="quiz-container">
-                    <div class="quiz-header" id="start-window">
-                        <h1 id="top">Quiz</h1>
+            <main class='quiz'>
+                <div class='quiz-container'>
+                    <div class='quiz-header' id='start-window'>
+                        <h1 id='top'>Quiz</h1>
                     </div>
                         <h1>
                             YAY!!! Quiz Time!!
@@ -38,31 +38,35 @@
                             <br>
                             Good Luck!
                         </p>
-                        <button id="start-quiz" class="btn">
+                        <button id='start-quiz' class='btn'>
                             Start Quiz
                         </button>
 
-                    <div class="quiz-body">
-                        <div class="quiz-question">
-                            <p id="question">Question</p>
-                        </div>
-
-                        <div class="quiz-answers">
-                            <button class="btn" id="answer1">Answer 1</button>
-                            <button class="btn" id="answer2">Answer 2</button>
-                            <button class="btn" id="answer3">Answer 3</button>
-                            <button class="btn" id="answer4">Answer 4</button>
+                    <div class='quiz-body' id='questions'>
+                        <h2 id='question-text'></h2>
+                        <div class='options' id='options'>
                         </div>
                     </div>
 
-                    <div class="quiz-footer">
-                        <button class="btn" id="start-quiz">Start Quiz</button>
+                    <div class='quiz-footer' id='end-window'>
+                        <h2 id='bottom'>Finished!</h2>
+                        <p id='final-score'>Your final score is: 
+                            <span id='score'></span>
+                        </p>
+                        <p>
+                            Please enter your initials:
+                            <input type='text' id='initials' placeholder='Initials'>
+                            <button id='submit-score' class='btn'>
+                                Submit</button>
+                        </p>
+                        
+                    
                     </div>
                 </div>
             </main>
 
-        </div>
+        </section>
         
-        <script src="script.js"></script>
+        <script src='script.js'></script>
     </body>
 </html>
