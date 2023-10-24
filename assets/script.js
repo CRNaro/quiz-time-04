@@ -5,6 +5,11 @@ const timeLeft = document.getElementById('time-left');
 
 //ToDo: set up variables for the quiz
 //ToDo: set up timer for the quiz
+document.addEventListener('DOMContentLoaded', 
+    (event) => {
+        const timerElement = document.getElementById('timer');
+        const startQuizButton = document.getElementById('start-quiz');
+
 startQuizButton.addEventListener('click', startQuiz);
 
 function startQuiz(){
@@ -14,7 +19,7 @@ function updateTimer() {
     const minutes = Math.floor(timeLeft / 60);
     const seconds = timeLeft % 60;
 
-    timerElement.timeLeft = `${seconds}`;
+    timerElement.innerHTML = `${minutes}${seconds}`;
 
     timeLeft--;
 
@@ -22,6 +27,7 @@ function updateTimer() {
         clearInterval(timerInterval);
         alert('Time is up!');
     }
+}
 }
 
 const timerInterval = setInterval(updateTimer, 1000);
@@ -70,8 +76,8 @@ function quizQuestion1() {
       } else {
         alert('Sorry, that is incorrect.');
       }
-    });
-  }
-  }
+    }
+    )};
+});
 
-}
+
