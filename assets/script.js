@@ -1,15 +1,21 @@
 //ToDo: set up variables for the quiz
-const timerElement = document.getElementById('timer');
-const startQuizButton = document.getElementById('start-quiz');
-const quizContainer = document.getElementById('quiz-container');
-const answerButtonsElement = document.getElementById('answer-buttons');
-const mainScreen = document.getElementById('main-screen');
-const questionScreen = document.getElementById('questionScreen');
+const highScroresBtn = document.getElementById('see-highest-score'); //connected
+const timerElement = document.getElementById('timer'); //connected
+const mainScreen = document.getElementById('main-screen'); //connected
+const startQuizButton = document.getElementById('start-quiz'); //connected
+const questionScreen = document.getElementById('question-screen'); //connected
+const answerButtonsElement = document.getElementById('answer-buttons');//connected
+const endScreen = document.getElementById('end-window'); //connected
+const finalScore = document.getElementById('final-score'); //connected
+const scoreForm = document.getElementById('score'); //connected
+const initials = document.getElementById('initials'); //connected
+const submitScoreBtn = document.getElementById('submit-score'); //connected
 
 
-let questionElement = document.getElementById('question');
+let questionElement = document.getElementById('question'); 
 
-// ToDo: set up function to display the questions
+// ToDo: set up function to display the questions - 
+//       switch from start screen to question screen
 // ToDo: set up prompts for questions to be used for the quiz (NOTE: NEED TO REARRANGE ANSWERS)
 const questions = [{
       questionText: 'What element do we use in HTML to connect our JavaScript file?',
@@ -56,8 +62,24 @@ const questions = [{
 
 let timeLeft = 60;
 let timerInterval;
-
+  // Start Quiz Button
 startQuizButton.addEventListener('click', startQuiz);
+  // Hide main screen  
+  function startQuiz() {
+    document.mainScreen.style.display = 'none';
+      // Show question screen
+    document.questionScreen.style.display = 'block';
+      // Display question 1
+      displayQuestion(0);
+    }
+
+function displayQuestion(questionIndex) {
+  const questions = questions[questionIndex].questionText;
+  const answerChoices = questions[questionIndex].answerChoices;
+}
+questionElement.textContent = question;
+
+answerChoicesElement.innerHTML = '';
 
 function startQuiz() {
   timerInterval = setInterval(updateTimer, 1000);
@@ -81,23 +103,19 @@ function updateTimer() {
 function startQuiz() {
   timerInterval = setInterval(updateTimer, 1000);
   
-  quizQuestion1();
+  
 }
 
 document.addEventListener('DOMContentLoaded', (event) => {
-startQuizButton.addEventListener('click', startQuiz);
+
 });
 
-//ToDo: set up function to start the quiz
-//ToDo: set up function to end the quiz
-//ToDo: set up function to save the score
-//ToDo: set up function to display the score
-
-//ToDo: set up function to check the answers
-//ToDo: set up function to display the high scores
-//ToDo: set up function to clear the high scores
-//ToDo: set up function to go back to the start of the quiz
-
+// To Do: Wrong answer buttons need to be tied to 2-5 second penalty
+// To Do: All answers need to be tied to next question screen
+// To Do: When quiz is finished timer needs to stop and that is the score
+// To Do: Need to set up local storage to save high scores/initials -
+//        probably need to set up a second HTML page for this
+// To Do: ONCE ALL FUNCTIONS IN JS ARE WORKING, NEED TO CLEAN UP CSS!!!
 
 
 
