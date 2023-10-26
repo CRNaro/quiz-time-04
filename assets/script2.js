@@ -173,3 +173,6 @@ for (let i = 0; i < choices.length; i++) {
     startQuizButton.classList.remove('hide');
     currentQuestionIndex = 0;
   }
+
+
+ 

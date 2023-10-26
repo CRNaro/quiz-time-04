@@ -17,46 +17,51 @@ let questionElement = document.getElementById('question');
 // ToDo: set up function to display the questions - 
 //       switch from start screen to question screen
 // ToDo: set up prompts for questions to be used for the quiz (NOTE: NEED TO REARRANGE ANSWERS)
-const questions = [{
+let questions = [{
       questionText: 'What element do we use in HTML to connect our JavaScript file?',
       answers: [
-        { text: '<script>', correct: true },
-        { text: '<link>', correct: false },
-        { text: '<meta>', correct: false },
-        { text: '<style>', correct: false },
-      ]
+          '<script>', 
+          '<link>', 
+          '<meta>',
+          '<style>',
+      ],
+      answer: '<script>',
 }, {     
       questionText: 'What is declaration is used for a variable that can NOT be changed?',
       answers: [
-        { text: 'const', correct: true },
-        { text: 'var', correct: false },
-        { text: 'let', correct: false },
-        { text: 'none of the above', correct: false },
-      ]
+          'const',
+          'var',
+          'let',
+          'none of the above',
+      ],
+      answer: 'const',
 }, {  
       questionText: 'What is the correct syntax for an array?',
       answers: [
-        { text: 'var array = []', correct: true },
-        { text: 'var array = {}', correct: false },
-        { text: 'var array = ()', correct: false },
-        { text: 'var array = <>', correct: false },
-      ]
+          'var array = []',
+          'var array = {}', 
+          'var array = ()', 
+          'var array = <>', 
+      ],
+      answer: 'var array = []',
 }, {
         questionText: 'What is the correct syntax for a function?',
-        answers: [
-          { text: 'function = myFunction()', correct: true },
-          { text: 'function myFunction()', correct: false },
-          { text: 'function: myFunction()', correct: false },
-          { text: 'function myFunction[]', correct: false },
-        ] 
+        answer: [
+            'function = myFunction()', 
+            'function myFunction()', 
+            'function: myFunction()', 
+            'function myFunction[]', 
+        ], 
+        answer: 'function myFunction()',
 }, {
         questionText: 'How can we prevent default behavior of a link or form in JavaScript?',
         answers: [
-          { text: 'preventDefault()', correct: true },
-          { text: 'preventDefault', correct: false },
-          { text: 'preventDefault = true', correct: false },
-          { text: 'preventDefault = false', correct: false },
-        ]
+            'preventDefault()', 
+            'preventDefault', 
+            'preventDefault = true', 
+            'preventDefault = false', 
+        ],
+        answer: 'preventDefault()',
 }];
 
 
@@ -70,16 +75,16 @@ startQuizButton.addEventListener('click', startQuiz);
       // Show question screen
     document.questionScreen.style.display = 'block';
       // Display question 1
-      displayQuestion(0);
+      displayQuestionText(0);
     }
 
 function displayQuestion(questionIndex) {
   const questions = questions[questionIndex].questionText;
   const answerChoices = questions[questionIndex].answerChoices;
 }
-questionElement.textContent = question;
 
-answerChoicesElement.innerHTML = '';
+
+
 
 function startQuiz() {
   timerInterval = setInterval(updateTimer, 1000);
