@@ -23,26 +23,42 @@ function startQuiz() {
 function displayQuestion(index) {
     let question = questions[index];
     questionText.innerText = question.questionText;
+    // Need to clear the answer buttons on the loop
+    answerButtons.innerHTML = '';
     for (let i = 0; i < question.answers.length; i++) {
         let button = document.createElement('button');
         button.innerText = question.answers[i];
-        button.addEventListener('click', function () {
-            checkAnswer(question.answers[i], question.answer);
-            currentIndex++;
-            if (currentIndex < questions.length) {
-                displayQuestion(currentIndex);
-            } else {
-                endQuiz();
-            }
+
+        if (question.answers[i] === question.answer) {
+            button.addEventListener('click', function () {
+              checkAnswer(question.answers[i], question.answer);
+              currentIndex++;
+              if (currentIndex < questions.length) {
+                  displayQuestion(currentIndex);
+              } else {
+                  endQuiz();
+              }
         });
+      }else{
+          button.addEventListener('click', function () {
+            checkAnswer(question.answers[i], question.answer);
+        });
+      }  
         answerButtons.appendChild(button);
     }
 }
-
-function checkAnswer(answer, correctAnswer) {
-    if (answer === correctAnswer) {
-        score++;
-    }
+        // Check if answers are correct
+function checkAnswer(selectedAnswer, correctAnswer) {
+    if (selectedAnswer === correctAnswer) {
+        }else{
+          timer -= 2;  // Deduct 2 seconds from timer
+          updateTimerDisplay(); // Update timer display on screen
+        }      
+}
+function updateTimerDisplay() {
+  let minutes = Math.floor(timer / 60);
+  let seconds = timer % 60;
+  timerEl.textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
 }
 
 function startTimer() {
@@ -60,22 +76,29 @@ function startTimer() {
     }, 1000);
 }
 
+
+
 function endQuiz() {
     clearInterval(timerInterval);
     quizScreen.style.display = 'none';
     endScreen.style.display = 'block';
-    document.querySelector('#final-score').innerText = `Your final score is: ${score}`;
+
+    finalTime = timer;
+    localStorage.setItem('finalTime', finalTime);
+    document.querySelector('#question-text').innerText = 
+      'Your final score is: ${finalTime}';
 }
 
 
 startBtn.addEventListener('click', () => {
-    // Start timer
-    startTimer();
+
+
    // Hide start screen
-   startQuiz();
-   startScreen.style.display = 'none';
+  startQuiz();
+  startScreen.style.display = 'none';
    // Show question screen
-   quizScreen(); // ! saying property is undefined (reading 'display')
+    quizScreen.style.display = 'block';
+    
 
 });
 
@@ -102,30 +125,21 @@ let questions = [{
     ],
     answer: 'const',
 }, {  
-    questionText: 'What is the correct syntax for an array?',
-    answers: [
-        'var array = []',
-        'var array = {}', 
-        'var array = ()', 
-        'var array = <>', 
-    ],
-    answer: 'var array = []',
+  questionText: 'What is the correct syntax for a function?', 
+  answers: [
+    'function = myFunction()', 
+    'function myFunction()', 
+    'function: myFunction()', 
+    'function myFunction[]', 
+  ], 
+  answer: 'function = myFunction()',
 }, {
-      questionText: 'What is the correct syntax for a function?',
-      answer: [
-          'function = myFunction()', 
-          'function myFunction()', 
-          'function: myFunction()', 
-          'function myFunction[]', 
-      ], 
-      answer: 'function myFunction()',
-}, {
-      questionText: 'How can we prevent default behavior of a link or form in JavaScript?',
-      answers: [
-          'preventDefault()', 
-          'preventDefault', 
-          'preventDefault = true', 
-          'preventDefault = false', 
-      ],
-      answer: 'preventDefault()',
+  questionText: 'How can we prevent default behavior of a link or form in JavaScript?',
+  answers: [
+    'preventDefault()', 
+    'preventDefault', 
+    'preventDefault = true', 
+    'preventDefault = false', 
+  ],
+  answer: 'preventDefault()',
 }];
