@@ -83,10 +83,10 @@ function endQuiz() {
     quizScreen.style.display = 'none';
     endScreen.style.display = 'block';
 
-    finalTime = timer;
+    var finalTime = timerEl.textContent;
     localStorage.setItem('finalTime', finalTime);
-    document.querySelector('#question-text').innerText = 
-      'Your final score is: ${finalTime}';
+    var finalScoreEl = document.getElementById('final-score'); //Changed section
+    finalScoreEl.textContent = 'Your final score is: ' + finalTime + '!';
 }
 
 
