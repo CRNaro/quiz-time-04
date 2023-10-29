@@ -7,6 +7,15 @@
     <link type="text/css" rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
+    <header>
+        <div class='header-text'>
+            <div>
+                <a href="./index2.html">
+                    <button class='scores-head'>
+                        High Scores</button>
+                </a>
+            </div>
+    </header>
     <main>
         <p class='timer-text'>Time Left:</p>
         <div id = 'timer'>
@@ -17,6 +26,7 @@
             <h1>Quiz</h1>
             <p>Test your knowledge of the world with this quiz!</p>
             <button id='start-button'>Start Quiz</button>
+
         </section>
         
         <section id='quiz-screen' class='hidden'>
@@ -27,6 +37,10 @@
         <section id='end-screen' class='hidden'>
             <h2>Quiz Results</h2>
             <p id='final-score'></p>
+            <form id='submit-form'>
+                <label for='initials'>Enter Initials:</label>
+                <input type='text' id='initials' name='initials' maxlength='3' required>
+                <button id='submit-button'>Submit</button>
         </section>
     </main>
 </body>

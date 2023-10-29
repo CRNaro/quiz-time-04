@@ -1,7 +1,11 @@
+//  TO DO: wrong answer buttons need to be fixed
+//  TO DO: need to add a high score page ***DONE***
+//  TO DO: add a place for initials and button to 
+//         save to local storage on high score page
+
+
 //Timer elements
 const timerEl = document.querySelector('#timer');
-const minutesEl = document.querySelector('#minutes');
-const secondsEl = document.querySelector('#seconds');
 const startScreen = document.querySelector('#start-screen');
 const startBtn = document.querySelector('#start-button');
 const endScreen = document.querySelector('#end-screen');
@@ -17,7 +21,7 @@ function startQuiz() {
     startScreen.style.display = 'none';
     quizScreen.style.display = 'block';
     displayQuestion(currentIndex);
-    startTimer();
+    
 }
 
 function displayQuestion(index) {
@@ -28,48 +32,56 @@ function displayQuestion(index) {
     for (let i = 0; i < question.answers.length; i++) {
         let button = document.createElement('button');
         button.innerText = question.answers[i];
-
-        if (question.answers[i] === question.answer) {
-            button.addEventListener('click', function () {
-              checkAnswer(question.answers[i], question.answer);
-              currentIndex++;
+        button.addEventListener('click', function () {
+              let isCorrect = checkAnswer(question.answers[i], question.answer);
+              if (isCorrect) {
+                  score++;
+              }else{
+                timer -= 2;  // Deduct 2 seconds from timer
+                updateTimerDisplay(); // Update timer
+              }
+                currentIndex++;
               if (currentIndex < questions.length) {
                   displayQuestion(currentIndex);
               } else {
                   endQuiz();
               }
-        });
-      }else{
-          button.addEventListener('click', function () {
-            checkAnswer(question.answers[i], question.answer);
-        });
-      }  
-        answerButtons.appendChild(button);
-    }
-}
+            
+          });
+          answerButtons.appendChild(button);
+        } 
+        
+        }
+
         // Check if answers are correct
 function checkAnswer(selectedAnswer, correctAnswer) {
     if (selectedAnswer === correctAnswer) {
+        return true;
         }else{
           timer -= 2;  // Deduct 2 seconds from timer
           updateTimerDisplay(); // Update timer display on screen
+          return false;
         }      
 }
+let timer = 60;
+const minutes = document.querySelector('#minutes');
+const seconds = document.querySelector('#seconds');
+
+
 function updateTimerDisplay() {
   let minutes = Math.floor(timer / 60);
   let seconds = timer % 60;
-  timerEl.textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+  timerEl.textContent = 
+  `${minutes.toString().padStart(2, "0")}:
+  ${seconds.toString().padStart(2, "0")}`;
 }
-
+ 
 function startTimer() {
-    let time = 60;
+  updateTimerDisplay();
     timerInterval = setInterval(function () {
-        time--;
-        let minutes = Math.floor(time / 60);
-        let seconds = time % 60;
-        timerEl.textContent = `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
-
-        if (time === 0) {
+        timer--;
+        updateTimerDisplay();
+        if (timer === 0) {
             clearInterval(timerInterval);
             endQuiz();
         }
@@ -82,24 +94,18 @@ function endQuiz() {
     clearInterval(timerInterval);
     quizScreen.style.display = 'none';
     endScreen.style.display = 'block';
-
-    var finalTime = timerEl.textContent;
+    let finalTime = timerEl.textContent;
     localStorage.setItem('finalTime', finalTime);
-    var finalScoreEl = document.getElementById('final-score'); //Changed section
+    var finalScoreEl = document.getElementById('final-score'); 
     finalScoreEl.textContent = 'Your final score is: ' + finalTime + '!';
 }
 
 
 startBtn.addEventListener('click', () => {
-
-
-   // Hide start screen
+  startTimer();
   startQuiz();
   startScreen.style.display = 'none';
-   // Show question screen
-    quizScreen.style.display = 'block';
-    
-
+  quizScreen.style.display = 'block';
 });
 
 
