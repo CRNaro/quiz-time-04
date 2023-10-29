@@ -12,7 +12,7 @@ const endScreen = document.querySelector('#end-screen');
 const questionText= document.querySelector('#question-text');
 const quizScreen = document.querySelector('#quiz-screen'); //!!!! USE qE or quizScreen?
 const answerButtons = document.querySelector('#answer-buttons');
-const submitBtn = document.querySelector('#submit-button');
+const submitBtn = document.querySelector('#submit-form #submit-button');
 
 let currentIndex = 0;
 let score = 0;
@@ -45,6 +45,7 @@ function displayQuestion(index) {
               if (currentIndex < questions.length) {
                   displayQuestion(currentIndex);
               } else {
+                if (currentIndex - 1 === questions.length)
                   endQuiz();
               }
             
@@ -90,16 +91,24 @@ function startTimer() {
 }
 
 
+var scoreList = []
 
 function endQuiz() {
-    clearInterval(timerInterval);
+  var finalScoreEl = document.getElementById('final-score'); 
+  var initialsInput = document.getElementById('initials-input');
+  var initials = initialsInput.value; 
+  let finalTime = timerEl.textContent;
+  var scoreListString = localStorage.getItem('finalTime');
+  if (scoreListString) {
+    scoreList = JSON.parse(scoreListString)
+  }
+  scoreList.push({initials: initials, score: finalTime});  
+  localStorage.setItem('finalTime', JSON.stringify(scoreList));
+  finalScoreEl.textContent = 'Your final score is: ' + finalTime + '!';
+  clearInterval(timerInterval);
     quizScreen.style.display = 'none';
     endScreen.style.display = 'block';
-    let finalTime = timerEl.textContent;
-    localStorage.setItem('finalTime', finalTime);
-    var finalScoreEl = document.getElementById('final-score'); 
-    finalScoreEl.textContent = 'Your final score is: ' + finalTime + '!';
-}
+  }
 
 // Save scores to local storage
 function saveScore() {
