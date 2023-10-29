@@ -12,6 +12,7 @@ const endScreen = document.querySelector('#end-screen');
 const questionText= document.querySelector('#question-text');
 const quizScreen = document.querySelector('#quiz-screen'); //!!!! USE qE or quizScreen?
 const answerButtons = document.querySelector('#answer-buttons');
+const submitBtn = document.querySelector('#submit-button');
 
 let currentIndex = 0;
 let score = 0;
@@ -100,6 +101,19 @@ function endQuiz() {
     finalScoreEl.textContent = 'Your final score is: ' + finalTime + '!';
 }
 
+// Save scores to local storage
+function saveScore() {
+  const initials = document.querySelector('#initals').value; //get initials entered
+  const scoreData = {          //Object to store my score and initals in 
+    score: score,
+    initials: initials
+  };
+  // retrieves scores from local storage also creates an empty array to fill with info
+  let scores = JSON.parse(localStorage.getItem('scores')) [];
+  scores.push(scoreData);
+  localStorage.setItem('scores', JSON.stringify(scores));
+}
+
 
 startBtn.addEventListener('click', () => {
   startTimer();
@@ -107,7 +121,9 @@ startBtn.addEventListener('click', () => {
   startScreen.style.display = 'none';
   quizScreen.style.display = 'block';
 });
-
+submitBtn.addEventListener('click', () => {
+    saveScore();
+});
 
 
 
