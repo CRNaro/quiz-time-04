@@ -1,10 +1,17 @@
+//  NOTES FOR THE FUTURE- Things go consider while tackling a problem:
+//                         You CAN NOT go at it the way you did this project.  The steps to 
+//                        solving the problems: Understand (make notes of what the problem 
+//                        I am trying to solve is). Plan (where I want to start and lay out 
+//                        psuedocode to as a map.  Divide (break it down in to smaller parts/smaller 
+//                        problems to solve)
+
+
+
 //  TO DO: wrong answer buttons need to be fixed
 //  TO DO: need to add a high score page ***DONE***
 //  TO DO: add a place for initials and button to 
 //         save to local storage on high score page
 
-
-//Timer elements
 const timerEl = document.querySelector('#timer');
 const startScreen = document.querySelector('#start-screen');
 const startBtn = document.querySelector('#start-button');
@@ -128,15 +135,7 @@ startBtn.addEventListener('click', () => {
 submitBtn.addEventListener('click', () => {
     saveScore();
 });
-        //  !!! I thought this would connect the scores to my HTML2, but is kills the 
-        //       quiz screen -  need to debug 
-//const scores = JSON.parse(localStorage.getItem('scores'));
-//const highScoresList = document.getElementById('high-scores-list');
-//scores.forEach(score => {
-  //const listItem = document.createElement('li');
-  //listItem.textContent = `${score.initials}: ${score.score}`;
- // highScoresList.appendChild(listItem);
-//});
+
 
 
 
