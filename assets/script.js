@@ -45,10 +45,10 @@ function displayQuestion(index) {
               if (currentIndex < questions.length) {
                   displayQuestion(currentIndex);
               } else {
-                if (currentIndex - 1 === questions.length)
-                  endQuiz();
+                if (currentIndex - 1 === questions.length - 1) {
+                endQuiz();
               }
-            
+              }
           });
           answerButtons.appendChild(button);
         } 
@@ -91,19 +91,23 @@ function startTimer() {
 }
 
 
-var scoreList = []
+
 
 function endQuiz() {
   var finalScoreEl = document.getElementById('final-score'); 
   var initialsInput = document.getElementById('initials-input');
   var initials = initialsInput.value; 
   let finalTime = timerEl.textContent;
-  var scoreListString = localStorage.getItem('finalTime');
+  
+  var scoreListString = localStorage.getItem('finalTime'); //was finalTime
+  var scoreList = []
   if (scoreListString) {
     scoreList = JSON.parse(scoreListString)
   }
-  scoreList.push({initials: initials, score: finalTime});  
+  scoreList.push({ initials: initials, score: finalTime});  
+  
   localStorage.setItem('finalTime', JSON.stringify(scoreList));
+  
   finalScoreEl.textContent = 'Your final score is: ' + finalTime + '!';
   clearInterval(timerInterval);
     quizScreen.style.display = 'none';
@@ -124,7 +128,15 @@ startBtn.addEventListener('click', () => {
 submitBtn.addEventListener('click', () => {
     saveScore();
 });
-
+        //  !!! I thought this would connect the scores to my HTML2, but is kills the 
+        //       quiz screen -  need to debug 
+//const scores = JSON.parse(localStorage.getItem('scores'));
+//const highScoresList = document.getElementById('high-scores-list');
+//scores.forEach(score => {
+  //const listItem = document.createElement('li');
+  //listItem.textContent = `${score.initials}: ${score.score}`;
+ // highScoresList.appendChild(listItem);
+//});
 
 
 
