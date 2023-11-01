@@ -98,7 +98,9 @@ function startTimer() {
 }
 
 
-
+// the main problem seems to be two things. 1 the score is saving to 
+// local storage prior to allowing user to add initial and then saving
+// problem 2. the initials are not being saved in the local file
 
 function endQuiz() {
   var finalScoreEl = document.getElementById('final-score'); 
@@ -106,7 +108,7 @@ function endQuiz() {
   var initials = initialsInput.value; 
   let finalTime = timerEl.textContent;
   
-  var scoreListString = localStorage.getItem('finalTime'); //was finalTime
+  var scoreListString = localStorage.getItem('finalTime'); // do i need to add 'initials, finalTime'?
   var scoreList = []
   if (scoreListString) {
     scoreList = JSON.parse(scoreListString)
