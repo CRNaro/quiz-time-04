@@ -103,28 +103,45 @@ function startTimer() {
 // problem 2. the initials are not being saved in the local file
 
 function endQuiz() {
-  var finalScoreEl = document.getElementById('final-score'); 
+  var finalScoreEl = document.getElementById('final-score'); //this got moved
   var initialsInput = document.getElementById('initials-input');
   var initials = initialsInput.value; 
   let finalTime = timerEl.textContent;
+  var scoreListString = localStorage.getItem('scoreList');
+  var scoreList = [];
   
-  var scoreListString = localStorage.getItem('finalTime'); // do i need to add 'initials, finalTime'?
-  var scoreList = []
   if (scoreListString) {
     scoreList = JSON.parse(scoreListString)
   }
-  scoreList.push({ initials: initials, score: finalTime});  
+  //scoreList.push({ initials: initials, score: finalTime});  
   
-  localStorage.setItem('finalTime', JSON.stringify(scoreList));
+  //localStorage.setItem('finalTime', JSON.stringify(scoreList));
   
   finalScoreEl.textContent = 'Your final score is: ' + finalTime + '!';
   clearInterval(timerInterval);
     quizScreen.style.display = 'none';
     endScreen.style.display = 'block';
+    saveScore(finalScoreEl);
   }
 
 // Save scores to local storage
-function saveScore() {
+function saveScore(finalScoreEl) {
+  var initialsInput = document.getElementById('initials-input');
+  var initials = initialsInput.value;
+
+  if (initials === '') {
+    alert('Please enter your initials');
+    return;
+  }
+  var finalTime = timerEl.textContent;
+  var scoreListString = localStorage.getItem('scoreList');
+  var scoreList = [];
+  
+  if (scoreListString) {
+    scoreList = JSON.parse(scoreListString)
+  }
+  scoreList.push({ initials: initials, score: finalTime});
+  localStorage.setItem('scoreList', JSON.stringify(scoreList));
 }
 
 
