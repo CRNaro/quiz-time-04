@@ -101,9 +101,9 @@ function startTimer() {
 // the main problem seems to be two things. 1 the score is saving to 
 // local storage prior to allowing user to add initial and then saving
 // problem 2. the initials are not being saved in the local file
-
+var finalScoreEl = document.getElementById('final-score'); //this got moved
 function endQuiz() {
-  var finalScoreEl = document.getElementById('final-score'); //this got moved
+  //var finalScoreEl = document.getElementById('final-score'); //this got moved
   var initialsInput = document.getElementById('initials-input');
   var initials = initialsInput.value; 
   let finalTime = timerEl.textContent;
@@ -113,15 +113,15 @@ function endQuiz() {
   if (scoreListString) {
     scoreList = JSON.parse(scoreListString)
   }
-  //scoreList.push({ initials: initials, score: finalTime});  
+  scoreList.push({ initials: initials, score: finalTime});  
   
-  //localStorage.setItem('finalTime', JSON.stringify(scoreList));
+  localStorage.setItem('finalTime', JSON.stringify(scoreList));
   
   finalScoreEl.textContent = 'Your final score is: ' + finalTime + '!';
   clearInterval(timerInterval);
     quizScreen.style.display = 'none';
     endScreen.style.display = 'block';
-    saveScore(finalScoreEl);
+    saveScore(finalScoreEl);  //was moved
   }
 
 // Save scores to local storage
@@ -142,6 +142,8 @@ function saveScore(finalScoreEl) {
   }
   scoreList.push({ initials: initials, score: finalTime});
   localStorage.setItem('scoreList', JSON.stringify(scoreList));
+  alert('Your score has been saved!');
+  finalScoreEl.textContent = 'Your final score is: ' + finalTime + '!';
 }
 
 
@@ -151,8 +153,9 @@ startBtn.addEventListener('click', () => {
   startScreen.style.display = 'none';
   quizScreen.style.display = 'block';
 });
-submitBtn.addEventListener('click', () => {
-    saveScore();
+submitBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    saveScore(finalScoreEl);
 });
 
 
