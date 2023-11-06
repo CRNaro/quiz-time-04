@@ -3,6 +3,8 @@
 // !!DEBUG THIS!!!
 const scores = JSON.parse(localStorage.getItem('scoreList'));
 const highScoresList = document.getElementById('high-scores-list');
+const clearBtn = document.getElementById('clear-scores-button');
+
 scores.forEach(score => {
   const listItem = document.createElement('li');
   listItem.textContent = `${score.initials}: ${score.score}`;
@@ -43,5 +45,9 @@ function displayScores() {
   }
 }
 
+clearBtn.addEventListener('click', function() {
+  localStorage.removeItem('scoreList');
+  displayScores();
+});
 // Add a DOMContentLoaded event listener to call the displayScores function when the page is loaded
 window.addEventListener('DOMContentLoaded', displayScores);
