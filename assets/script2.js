@@ -1,6 +1,6 @@
 
 
-// !!DEBUG THIS!!!
+
 const scores = JSON.parse(localStorage.getItem('scoreList'));
 const highScoresList = document.getElementById('high-scores-list');
 const clearBtn = document.getElementById('clear-scores-button');
@@ -44,7 +44,7 @@ function displayScores() {
     }
   }
 }
-
+// clear scores button
 clearBtn.addEventListener('click', function() {
   localStorage.removeItem('scoreList');
   displayScores();

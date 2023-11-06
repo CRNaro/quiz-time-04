@@ -7,10 +7,7 @@
 
 
 
-//  TO DO: wrong answer buttons need to be fixed *FIXED*
-//  TO DO: need to add a high score page and connect with JSON
-//  TO DO: add a place for initials and button to 
-//         save to local storage on high score page
+//  !!! go though code and add psuedocode for everything !!!
 
 const timerEl = document.querySelector('#timer');
 const startScreen = document.querySelector('#start-screen');
