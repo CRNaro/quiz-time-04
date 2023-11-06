@@ -115,13 +115,12 @@ function endQuiz() {
   }
   scoreList.push({ initials: initials, score: finalTime});  
   
-  localStorage.setItem('finalTime', JSON.stringify(scoreList));
+  //localStorage.setItem('finalTime', JSON.stringify(scoreList));
   
   finalScoreEl.textContent = 'Your final score is: ' + finalTime + '!';
   clearInterval(timerInterval);
     quizScreen.style.display = 'none';
     endScreen.style.display = 'block';
-    saveScore(finalScoreEl);  //was moved
   }
 
 // Save scores to local storage

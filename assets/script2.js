@@ -1,7 +1,7 @@
 
 
 // !!DEBUG THIS!!!
-const scores = JSON.parse(localStorage.getItem('scores'));
+const scores = JSON.parse(localStorage.getItem('scoreList'));
 const highScoresList = document.getElementById('high-scores-list');
 scores.forEach(score => {
   const listItem = document.createElement('li');
